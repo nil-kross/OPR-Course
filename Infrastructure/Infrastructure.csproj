@@ -7,7 +7,7 @@
     <ProjectGuid>{5718306E-17CA-4150-9DB8-86909240D847}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OPR_Course</RootNamespace>
+    <RootNamespace>Lomtseu</RootNamespace>
     <AssemblyName>OPR-Course</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chromosome.cs" />
+    <Compile Include="Individual.cs" />
+    <Compile Include="Population.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
