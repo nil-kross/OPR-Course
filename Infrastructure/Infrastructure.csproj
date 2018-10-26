@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Chromosome.cs" />
+    <Compile Include="FitnessDelegate.cs" />
     <Compile Include="GeneticAlgorithm.cs" />
     <Compile Include="Individual.cs" />
     <Compile Include="Population.cs" />
