@@ -74,7 +74,7 @@ namespace Lomtseu {
             public Nullable<Decimal> Max { get; set; }
         }
 
-        public class Point {
+        public class Argument {
             private Parameter parameter = null;
             private Decimal value = Decimal.Zero;
 
@@ -86,7 +86,7 @@ namespace Lomtseu {
                 get => this.value;
             }
 
-            public Point(
+            public Argument(
                 Parameter parameter,
                 Decimal startingValue
             ) {

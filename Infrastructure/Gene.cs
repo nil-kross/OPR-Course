@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 namespace Lomtseu {
     public class Gene
     {
-        private Parameter.Point value;
+        private Parameter.Argument argument;
 
-        public Parameter.Point Value {
-            get => this.value;
+        public Parameter.Argument Value {
+            get => this.argument;
         }
 
-        public Gene(Parameter.Point value)
+        public Gene(Parameter.Argument startingArgument)
         {
-            this.value = value;
+            this.argument = startingArgument;
         }
     }
 }
