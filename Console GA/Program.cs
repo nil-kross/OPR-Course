@@ -10,10 +10,13 @@ namespace Lomtseu {
         {
             Parameter x = new Parameter(new Parameter.Options() { Name = "X", Min = 0, Max = 42 });
             Parameter y = new Parameter(new Parameter.Options() { Name = "Y", Min = 0, Max = 128 });
+            var @params = new List<Parameter>{
+                x, y
+            };
             FitnessDelegate fitness = (ind) => 42.0M;
-            Population pop = new Population();
+            Population pop = new Population(new Population.Options() { Starting =  });
 
-            GeneticAlgorithm ga = new GeneticAlgorithm(pop, fitness);
+            GeneticAlgorithm ga = new GeneticAlgorithm(@params, pop, fitness);
         }
     }
 }

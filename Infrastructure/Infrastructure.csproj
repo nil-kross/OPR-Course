@@ -44,6 +44,7 @@
     <Compile Include="Chromosome.cs" />
     <Compile Include="FitnessDelegate.cs" />
     <Compile Include="Gene.cs" />
+    <Compile Include="Generation.cs" />
     <Compile Include="GeneticAlgorithm.cs" />
     <Compile Include="Individual.cs" />
     <Compile Include="Parameter.cs" />

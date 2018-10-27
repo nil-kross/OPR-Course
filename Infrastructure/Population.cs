@@ -6,28 +6,34 @@ using System.Threading.Tasks;
 
 namespace Lomtseu {
     public class Population {
-        private UInt32 generationOrderValue = 0;
-        private IList<Individual> individualsList = null;
+        private UInt32 maxGenerationCountValue = 0;
+        private IList<Generation> generationsList = null;
 
-        public IEnumerable<Individual> Individuals {
-            get => this.individualsList;
+        public Generation Current {
+            get => this.generationsList[(Int32)this.maxGenerationCountValue];
         }
 
-        public UInt32 GenerationOrder {
-            get => this.generationOrderValue;
+        public UInt32 MaxGenerationsCount {
+            get => this.maxGenerationCountValue;
         }
 
-        public Int32 Size {
-            get => this.individualsList?.Count() ?? 0;
+        public IEnumerable<Generation> Generations {
+            get => this.generationsList;
         }
 
-        public Population(IEnumerable<Individual> startPopulation = null) {
-            this.individualsList = new List<Individual>(startPopulation);
+        public Population(Population.Options options) {
+            this.maxGenerationCountValue = options.MaxGenerationsCount ?? 0;
+            this.generationsList = new List<Generation>();
+
+            if (options.Starting != null) {
+                this.generationsList.Add(options.Starting);
+            }
         }
 
-        public override string ToString()
-        {
-            return $"Generation: {this.GenerationOrder}-nd order, Size: {this.Size}";
+        public class Options {
+            public Nullable<UInt32> MaxGenerationsCount { get; set; }
+
+            public Generation Starting { get; set; }
         }
     }
 }
