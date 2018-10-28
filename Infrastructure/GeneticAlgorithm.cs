@@ -19,5 +19,11 @@ namespace Lomtseu {
             this.population = startingPopulation;
             this.fitnessDelegate = fitnessFunction;
         }
+
+        public Task<IEnumerable<Parameter.Argument>> Compute() {
+            this.population.Current.
+
+            return null; // IMP
+        }
     }
 }

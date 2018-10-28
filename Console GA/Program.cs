@@ -17,6 +17,13 @@ namespace Lomtseu {
             Population pop = new Population(new Population.Options() { Starting =  });
 
             GeneticAlgorithm ga = new GeneticAlgorithm(@params, pop, fitness);
+
+            var res = ga.Compute().Result;
+            
+            foreach (var value in res) {
+                Console.WriteLine(value);
+            }
+            Console.ReadKey();
         }
     }
 }

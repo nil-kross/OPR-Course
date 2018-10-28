@@ -25,6 +25,44 @@ namespace Lomtseu {
             this.individualsList = new List<Individual>(startPopulation);
         }
 
+        public void Cross() {
+            var childIndividualsList = new List<Individual>();
+            var crossedIndividualsList = new List<Individual>();
+            var uncrossedIndividualsList = new List<Individual>(this.individualsList);
+
+            {
+                var isDone = false;
+                var random = new Random(DateTime.Now.Millisecond);
+
+                while (!isDone) {
+                    if (uncrossedIndividualsList.Count >= 2) {
+                        var firstIndividual 
+                            = uncrossedIndividualsList[random.Next(0, uncrossedIndividualsList.Count - 1)];
+
+                        uncrossedIndividualsList.Remove(firstIndividual);
+
+                        {
+                            var secondIndividual = uncrossedIndividualsList[random.Next(0, uncrossedIndividualsList.Count - 1)];
+
+                            uncrossedIndividualsList.Remove(secondIndividual);
+
+                            {
+                                var childIndividual = firstIndividual.Cross(secondIndividual);
+                            }
+                        }
+                    } else {
+                        isDone = true;
+                    }
+                }
+            }
+
+            this.individualsList = new List<Individual>(
+                crossedIndividualsList
+                .Concat(uncrossedIndividualsList)
+                .Concat(childIndividualsList)
+            );
+        }
+
         public override string ToString() {
             return $"Generation: {this.GenerationOrder}-nd order, Size: {this.Size}";
         }
