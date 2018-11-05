@@ -5,5 +5,5 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Lomtseu {
-    public delegate decimal FitnessDelegate(Individual individual);
+    public delegate decimal FitnessDelegate(Chromosome individual);
 }

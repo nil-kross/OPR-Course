@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lomtseu.Abstractions
-{
-    public abstract class Fitness
-    {
+namespace Lomtseu {
+    public class Fitness {
         private Chromosome chromosome = null;
         private Decimal value = 0;
 

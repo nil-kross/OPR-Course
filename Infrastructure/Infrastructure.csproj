@@ -41,22 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\Chromosome.cs" />
-    <Compile Include="Abstractions\Fitness.cs" />
-    <Compile Include="Abstractions\Gene.cs" />
-    <Compile Include="Abstractions\GeneticAlgorithm.cs" />
-    <Compile Include="Abstractions\Population.cs" />
-    <Compile Include="Abstractions\StartingPopulationResolver.cs" />
     <Compile Include="Chromosome.cs" />
     <Compile Include="CrossingDelegate.cs" />
+    <Compile Include="Fitness.cs" />
     <Compile Include="FitnessDelegate.cs" />
     <Compile Include="Gene.cs" />
-    <Compile Include="Generation.cs" />
     <Compile Include="GeneticAlgorithm.cs" />
-    <Compile Include="Individual.cs" />
     <Compile Include="Parameter.cs" />
     <Compile Include="Population.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StartingPopulationResolver.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

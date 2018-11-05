@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Lomtseu.Parameter;
 
-namespace Lomtseu.Abstractions {
+namespace Lomtseu {
     public class StartingPopulationResolver {
         public Population StartingPopulation { get; protected set; }
 

@@ -13,16 +13,29 @@ namespace Lomtseu {
             var @params = new List<Parameter>{
                 x, y
             };
-            FitnessDelegate fitness = (ind) => 42.0M;
-            Population pop = new Population(new Population.Options() { Starting =  });
+            Func<Chromosome, Fitness> fitness = (ind) => new Fitness(ind, DateTime.Now.Ticks);
+            Func<IEnumerable<Fitness>, Population> selection = (IEnumerable<Fitness> fitnesses) => {
+                Population newPopulation = null;
 
-            GeneticAlgorithm ga = new GeneticAlgorithm(@params, pop, fitness);
+                {
+                    var chromosomesList = new List<Chromosome>();
 
-            var res = ga.Compute().Result;
-            
-            foreach (var value in res) {
-                Console.WriteLine(value);
-            }
+                    foreach (var chromosomeFitness in fitnesses) {
+                        chromosomesList.Add(chromosomeFitness.Chromosome);
+                    }
+
+                    newPopulation = new Population(chromosomesList);
+                }
+
+                return newPopulation;
+            };
+            StartingPopulationResolver populationResolver = new StartingPopulationResolver(new StartingPopulationResolver.RandomOptions(5, @params));
+
+            GeneticAlgorithm ga = new GeneticAlgorithm(populationResolver, selection, 10, fitness, 0.01);
+
+            var res = ga.Compute();
+            Console.WriteLine(res);
+
             Console.ReadKey();
         }
     }

@@ -2,5 +2,5 @@
 
 namespace Lomtseu
 {
-    public delegate IEnumerable<Individual> CrossingDelegate(IEnumerable<Individual> individuals);
+    public delegate IEnumerable<Chromosome> CrossingDelegate(IEnumerable<Chromosome> individuals);
 }
