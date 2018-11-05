@@ -22,9 +22,19 @@ namespace Lomtseu {
         }
 
         public Individual Cross(Individual otherIndividual) {
-            var childChromosome = new Chromosome();
+            var zigote = Chromosome.Cross(this.Chromosome, otherIndividual.Chromosome);
 
-            return new Individual(childChromosome);
+            return new Individual(zigote.);
+        }
+
+        public class Fitness {
+            public Individual Individual { get; protected set; }
+            public IEnumerable<Parameter.Argument> Arguments { get; protected set; }
+
+            public Fitness(Individual individual, IEnumerable<Parameter.Argument> arguments) {
+                this.Individual = individual;
+                this.Arguments = arguments;
+            }
         }
     }
 }

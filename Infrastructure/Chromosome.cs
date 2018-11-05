@@ -7,7 +7,14 @@ using System.Threading.Tasks;
 namespace Lomtseu {
     public class Chromosome {
         private IList<Gene> genes;
+        private Boolean[] allelesValuesArray = null;
 
+        public Boolean[] Alleles {
+            get => this.allelesValuesArray;
+            protected set {
+                this.allelesValuesArray = value;
+            }
+        }
         public IEnumerable<Gene> Genes {
             get => this.genes;
         }

@@ -9,21 +9,27 @@ namespace Lomtseu {
         private IList<Parameter> parametersList = null;
         private Population population = null;
         private FitnessDelegate fitnessDelegate = null;
+        private CrossingDelegate crossingDelegate = null;
 
-        public GeneticAlgorithm(
-            IEnumerable<Parameter> parameters,
-            Population startingPopulation, 
-            FitnessDelegate fitnessFunction
-        ) {
-            this.parametersList = new List<Parameter>(parameters);
-            this.population = startingPopulation;
-            this.fitnessDelegate = fitnessFunction;
+        public GeneticAlgorithm(GeneticAlgorithm.Options options) {
+            this.parametersList = new List<Parameter>(options.Parameters);
+            this.population = options.Population;
+            this.fitnessDelegate = options.Fitness;
         }
 
         public Task<IEnumerable<Parameter.Argument>> Compute() {
-            this.population.Current.
+            var currentGeneration = this.population.Current;
+
+            var parametersArguments = currentGeneration;
 
             return null; // IMP
+        }
+
+        public class Options {
+            public IEnumerable<Parameter> Parameters { get; set; }
+            public Population Population { get; set; }
+            public FitnessDelegate Fitness { get; set; }
+            public CrossingDelegate Crossing { get; set; }
         }
     }
 }

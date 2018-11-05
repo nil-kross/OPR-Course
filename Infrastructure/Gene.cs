@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Lomtseu {
-    public class Gene
-    {
+    public class Gene {
         private Parameter.Argument argument;
 
         public Parameter.Argument Value {
