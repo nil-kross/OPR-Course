@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Lomtseu.Parameter;
 
-namespace Lomtseu.Abstractions
-{
-    public abstract class Chromosome
-    {
+namespace Lomtseu.Abstractions {
+    public class Chromosome {
         private IList<Gene> genesList = null;
 
-        public abstract void Mutate();
+        public Chromosome(IEnumerable<Argument> arguments) {
+            throw new NotImplementedException();
+        }
+
+        public void Mutate() {
+            throw new NotImplementedException();
+        }
     }
 }

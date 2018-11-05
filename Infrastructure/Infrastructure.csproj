@@ -46,6 +46,7 @@
     <Compile Include="Abstractions\Gene.cs" />
     <Compile Include="Abstractions\GeneticAlgorithm.cs" />
     <Compile Include="Abstractions\Population.cs" />
+    <Compile Include="Abstractions\StartingPopulationResolver.cs" />
     <Compile Include="Chromosome.cs" />
     <Compile Include="CrossingDelegate.cs" />
     <Compile Include="FitnessDelegate.cs" />

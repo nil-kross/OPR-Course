@@ -60,6 +60,18 @@ namespace Lomtseu {
             this.maxValueNullable = options?.Max ?? null;
         }
 
+        public Argument GetRandomArgument() {
+            var random = new Random(DateTime.Now.Millisecond);
+            var value = (Decimal)(
+                random.Next(
+                    (this.IsHasMin ? (Int32)this.Min : Int32.MinValue),
+                    (this.IsHasMax ? (Int32)this.Max : Int32.MaxValue)
+                ) + random.NextDouble()
+            );
+
+            return new Argument(this, value);
+        }
+
         public override string ToString() {
             String nameBlockString = this.IsHasName ? $"{this.Name}: " : "";
             String leftBorderString = (this.IsHasMin ? $"{this.Min} < " : "-∞") + " < ";
