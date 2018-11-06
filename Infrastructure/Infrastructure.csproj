@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Argument.cs" />
     <Compile Include="Chromosome.cs" />
     <Compile Include="CrossingDelegate.cs" />
     <Compile Include="Fitness.cs" />

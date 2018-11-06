@@ -85,30 +85,5 @@ namespace Lomtseu {
             public Nullable<Decimal> Min { get; set; }
             public Nullable<Decimal> Max { get; set; }
         }
-
-        public class Argument {
-            private Parameter parameter = null;
-            private Decimal value = Decimal.Zero;
-
-            public Parameter Parameter {
-                get => this.parameter;
-            }
-
-            public Decimal Value {
-                get => this.value;
-            }
-
-            public Argument(
-                Parameter parameter,
-                Decimal startingValue
-            ) {
-                this.parameter = parameter;
-                this.value = startingValue;
-            }
-
-            public override String ToString() {
-                return $"{this.Parameter.Name}: {this.Value:G2}";
-            }
-        }
     }
 }
