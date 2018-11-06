@@ -106,8 +106,7 @@ namespace Lomtseu {
                 this.value = startingValue;
             }
 
-            public override string ToString()
-            {
+            public override String ToString() {
                 return $"{this.Parameter.Name}: {this.Value:G2}";
             }
         }

@@ -30,7 +30,6 @@ namespace Lomtseu {
                 return newPopulation;
             };
             StartingPopulationResolver populationResolver = new StartingPopulationResolver(new StartingPopulationResolver.RandomOptions(5, @params));
-
             GeneticAlgorithm ga = new GeneticAlgorithm(populationResolver, selection, 10, fitness, 0.01);
 
             var res = ga.Compute();

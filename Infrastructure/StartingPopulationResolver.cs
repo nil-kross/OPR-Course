@@ -42,8 +42,10 @@ namespace Lomtseu {
                             }
 
                             chromosome = new Chromosome(arguments);
+                            chromosomesList.Add(chromosome);
                         }
                     }
+                    startingPopulation = new Population(chromosomesList);
                 }
 
                 this.StartingPopulation = startingPopulation;

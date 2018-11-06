@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 
-namespace Lomtseu
-{
+namespace Lomtseu {
     public delegate IEnumerable<Chromosome> CrossingDelegate(IEnumerable<Chromosome> individuals);
 }

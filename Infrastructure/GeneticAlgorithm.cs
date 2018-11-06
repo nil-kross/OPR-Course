@@ -25,8 +25,7 @@ namespace Lomtseu {
             this.fitnessDelegate = fitness;
         }
 
-        public Population Compute()
-        {
+        public Population Compute() {
             var currentPopulation = this.startingPopulation;
 
             /*
