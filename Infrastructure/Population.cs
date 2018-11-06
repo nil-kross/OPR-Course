@@ -23,5 +23,15 @@ namespace Lomtseu {
             this.chromosomesList = new List<Chromosome>(chromosomes);
             this.generationOrderValue = currentGenerationOrderValue++;
         }
+
+        public override String ToString() {
+            var chromosomesString = "";
+
+            foreach (var chromosome in this.chromosomesList) {
+                chromosomesString += " " + chromosome.ToString() + ";";
+            }
+
+            return $"#{this.GenerationOrder} Size: {this.chromosomesList.Count} | {chromosomesString}";
+        }
     }
 }

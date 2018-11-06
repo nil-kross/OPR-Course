@@ -7,30 +7,18 @@ using System.Threading.Tasks;
 namespace Lomtseu {
     public class Parameter {
         private String nameString = null;
-        private Nullable<Decimal> minValueNullable = null;
-        private Nullable<Decimal> maxValueNullable = null;
+        private Nullable<Decimal> minValue = null;
+        private Nullable<Decimal> maxValue = null;
 
         public Boolean IsHasName {
             get => this.nameString != null && this.nameString.Length > 0;
-        }
-
-        public Boolean IsHasMin {
-            get => this.minValueNullable.HasValue;
-        }
-
-        public Boolean IsHasMax {
-            get => this.maxValueNullable.HasValue;
         }
 
         public Decimal Min {
             get {
                 Decimal minValue = 0;
 
-                if (this.IsHasMin) {
-                    minValue = this.minValueNullable.Value;
-                } else {
-                    throw new Exception("Min value was null.");
-                }
+                minValue = this.minValue.Value;
 
                 return minValue;
             }
@@ -40,11 +28,7 @@ namespace Lomtseu {
             get {
                 Decimal maxValue = 0;
 
-                if (this.IsHasMax) {
-                    maxValue = this.maxValueNullable.Value;
-                } else {
-                    throw new Exception("Max value was null.");
-                }
+                maxValue = this.maxValue.Value;
 
                 return maxValue;
             }
@@ -54,36 +38,25 @@ namespace Lomtseu {
             get => this.nameString;
         }
 
-        public Parameter(Parameter.Options options) {
-            this.nameString = options?.Name ?? null;
-            this.minValueNullable = options?.Min ?? null;
-            this.maxValueNullable = options?.Max ?? null;
+        public Parameter(String name, Decimal min, Decimal max) {
+            this.nameString = name;
+            this.minValue = min;
+            this.maxValue = max;
         }
 
         public Argument GetRandomArgument() {
-            var random = new Random(DateTime.Now.Millisecond);
             var value = (Decimal)(
-                random.Next(
-                    (this.IsHasMin ? (Int32)this.Min : Int32.MinValue),
-                    (this.IsHasMax ? (Int32)this.Max : Int32.MaxValue)
-                ) + random.NextDouble()
+                GreatRandom.Next(
+                    (Int32)this.Min,
+                    (Int32)this.Max
+                ) + GreatRandom.NextDouble()
             );
 
             return new Argument(this, value);
         }
 
         public override string ToString() {
-            String nameBlockString = this.IsHasName ? $"{this.Name}: " : "";
-            String leftBorderString = (this.IsHasMin ? $"{this.Min} < " : "-∞") + " < ";
-            String rightBorderStrign = " > " + (this.IsHasMax ? $"{this.Max}" : "+∞");
-
-            return nameBlockString + $"({leftBorderString}x{rightBorderStrign})";
-        }
-
-        public class Options {
-            public String Name { get; set; }
-            public Nullable<Decimal> Min { get; set; }
-            public Nullable<Decimal> Max { get; set; }
+            return $"{this.Min} < {this.Name} < {this.Max}";
         }
     }
 }

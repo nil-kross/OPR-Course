@@ -26,7 +26,7 @@ namespace Lomtseu {
         }
 
         public override String ToString() {
-            return $"{this.Parameter.Name}: {this.Value:G2}";
+            return $"{this.Parameter.Name}={this.Value:G2}";
         }
     }
 }

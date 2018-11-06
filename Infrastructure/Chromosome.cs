@@ -39,13 +39,26 @@ namespace Lomtseu {
 
         public void Mutate() {
             if (this.allelesArray != null) {
-                var random = new Random(DateTime.Now.Millisecond);
-                var indexValue = random.Next(0, this.allelesArray.Length - 1);
+                var indexValue = GreatRandom.Next(0, this.allelesArray.Length - 1);
 
                 this.allelesArray[indexValue] = !(this.allelesArray[indexValue]);
             } else {
                 throw new Exception("Can't mutate this chromosome. Alleles not created yet!");
             }
+        }
+
+        public override String ToString() {
+            var allelesString = "";
+            var argumentsString = "";
+
+            foreach (var allel in this.allelesArray) {
+                allelesString += allel == true ? "1" : "0";
+            }
+            foreach (var gene in this.genesList) {
+                argumentsString += $"{gene[this.allelesArray].ToString()};";
+            }
+
+            return $"[{allelesString}]=({argumentsString})";
         }
     }
 }

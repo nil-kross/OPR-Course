@@ -25,7 +25,6 @@ namespace Lomtseu {
 
         public class RandomOptions : Options {
             public RandomOptions(Int32 populationSize, IEnumerable<Parameter> parameters) {
-                var random = new Random(DateTime.Now.Millisecond);
                 Population startingPopulation = null;
 
                 {

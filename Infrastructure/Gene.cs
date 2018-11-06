@@ -13,7 +13,7 @@ namespace Lomtseu {
 
         public Decimal this[Boolean[] alleles] {
             get {
-                decimal value = 0;
+                Decimal value = 0;
 
                 {
                     var mulpiplicatorValue = 1;
@@ -37,8 +37,8 @@ namespace Lomtseu {
                         alleles[j] = false;
                     }
                     while (currValue > 0) {
-                        var div = currValue / 2;
-                        var mod = currValue % 2;
+                        var div = (Int32)currValue / 2;
+                        var mod = (Int32)currValue % 2;
 
                         alleles[i] = mod == 1 ? true : false;
                         currValue = div;
@@ -58,7 +58,7 @@ namespace Lomtseu {
                     Int32 length = 0;
 
                     {
-                        var amplitudeValue = this.parameter.Max - this.parameter.Min;
+                        Int32 amplitudeValue = (Int32)(this.parameter.Max - this.parameter.Min);
                         
                         while (amplitudeValue > 0) {
                             amplitudeValue /= 2;
@@ -81,7 +81,7 @@ namespace Lomtseu {
             this.lengthValue = this.Length;
         }
 
-        public override string ToString() {
+        public override String ToString() {
             return $"{this.parameter} | P: {this.Position} L: {this.Length}";
         }
     }
