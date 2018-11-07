@@ -52,7 +52,7 @@ namespace Lomtseu {
                 99,
                 fitness,
                 0.10,
-                0.50,
+                0.40,
                 null,
                 new TimeSpan(0, 0, 1, 0)
             );

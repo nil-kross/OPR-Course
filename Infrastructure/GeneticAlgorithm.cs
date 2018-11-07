@@ -44,6 +44,7 @@ namespace Lomtseu {
 
         public Fitness Compute() {
             Fitness optimalSolutionFitness = null;
+            ISet<Chromosome> chromosomesSet = new HashSet<Chromosome>();
             var startingTimeValue = DateTime.Now;
             var currentPopulation = this.startingPopulation;
             var isEnd = false;
@@ -56,39 +57,56 @@ namespace Lomtseu {
                 IList<Fitness> fitnessesList = new List<Fitness>();
 
                 this.logger.Log(currentPopulation.ToString());
+                // Вычисление значений приспособленности:
+                this.logger.WriteWithColor(" Приспособленность: ", ConsoleColor.Gray);
                 foreach (var chromosome in currentPopulation.Chromosomes)
                 {
                     var fitness = this.fitnessDelegate(chromosome);
 
+                    logger.WriteWithColor($"{fitness}, ", ConsoleColor.Blue);
                     fitnessesList.Add(fitness);
                 }
+                this.logger.WriteWithColor("\n", ConsoleColor.White);
+                // Мутация:
                 {
-                    this.logger.WriteWithColor(" Приспособленность: ", ConsoleColor.Gray);
-                    foreach (var fitness in fitnessesList) {
-                        logger.WriteWithColor($"{fitness}, ", ConsoleColor.Blue);
+                    var mutatedChromosomesSet = new HashSet<Chromosome>();
+                    var mutatedCountValue = (Int32)(this.mutationChanceValue * currentPopulation.Chromosomes.Count());
+
+                    for (var k = 0; k < mutatedCountValue; k++) {
+                        var isDone = false;
+
+                        while (!isDone) {
+                            var indexValue = GreatRandom.Next(0, currentPopulation.Chromosomes.Count());
+                            var chromosome = currentPopulation.Chromosomes[indexValue];
+
+                            if (mutatedChromosomesSet.Add(chromosome)) {
+                                isDone = true;
+                                chromosome.Mutate();
+                                this.logger.WriteWithColor($" Хромосома #{chromosome.Id} мутировала!\n", ConsoleColor.Red);
+                            }
+                        }
                     }
-                    this.logger.WriteWithColor("\n", ConsoleColor.White);
                 }
+                // Нахождение оптимального решения:
                 foreach (var fitness in fitnessesList) {
                     if (optimalSolutionFitness == null ||
                         fitness.Value > optimalSolutionFitness.Value) {
                         optimalSolutionFitness = fitness;
                     }
                 }
+                // Скрещивание:
+                {
+                    var uncrossedChromosomesList = currentPopulation.Chromosomes;
+                    var crossedChromosomesList = new List<Chromosome>();
+
+                }
+                // Селекция:
                 {
                     var newPopulation = this.selectionDelegate(fitnessesList, this.selectionPartValue);
 
                     currentPopulation = newPopulation;
                 }
-
-                foreach (var chromosome in currentPopulation.Chromosomes) {
-                    Double chance = (Double)((GreatRandom.Next(0, 100) * 1.0f) / 100);
-                    if (chance < this.mutationChanceValue) {
-                        chromosome.Mutate();
-                        logger.WriteWithColor($" Хромосома #{chromosome.Id} мутировала!\n", ConsoleColor.Red);
-                    }
-                }
-
+                // Условия окончания алгормтма:
                 if (currentPopulation.Chromosomes.Count() <= 1) {
                     this.logger.WriteWithColor(" Осталась одна хромосома.", ConsoleColor.Red);
                     isEnd = true;

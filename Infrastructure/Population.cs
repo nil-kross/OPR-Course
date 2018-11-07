@@ -11,7 +11,7 @@ namespace Lomtseu {
         private IList<Chromosome> chromosomesList = null;
         private Byte generationOrderValue = 0;
 
-        public IEnumerable<Chromosome> Chromosomes {
+        public IList<Chromosome> Chromosomes {
             get => this.chromosomesList;
         }
 
