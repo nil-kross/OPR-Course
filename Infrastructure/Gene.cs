@@ -20,16 +20,16 @@ namespace Lomtseu {
 
                     for (var i = this.positionValue; i < (this.positionValue + this.lengthValue); i++)
                     {
-                        value += alleles[i] ? 1 : 0 * mulpiplicatorValue;
+                        value += (alleles[i] ? 1 : 0) * mulpiplicatorValue;
                         mulpiplicatorValue *= 2;
                     }
-                    value -= this.parameter.Min;
+                    value += this.parameter.Min;
                 }
 
                 return value;
             }
             set {
-                if (value <= this.parameter.Max && value >= this.parameter.Min) {
+                if (this.IsValid(alleles, value)) {
                     var currValue = value + Math.Abs(this.parameter.Min);
                     var i = this.positionValue;
 
@@ -76,13 +76,30 @@ namespace Lomtseu {
             }
         }
 
+        public Parameter Parameter {
+            get => this.parameter;
+        }
+
         public Gene(Parameter parameter) {
             this.parameter = parameter;
             this.lengthValue = this.Length;
         }
 
+        public Boolean IsValid(Boolean[] alleles, Nullable<Decimal> value = null) {
+            var isValid = false;
+
+            if (value == null) {
+                value = this[alleles];
+            }
+            if (value <= this.parameter.Max && value >= this.parameter.Min) {
+                isValid  = true;
+            }
+
+            return isValid;
+        }
+
         public override String ToString() {
-            return $"{this.parameter} | P: {this.Position} L: {this.Length}";
+            return $"{this.parameter} | P: {this.Position,3} L: {this.Length,3}";
         }
     }
 }

@@ -28,10 +28,10 @@ namespace Lomtseu {
             var chromosomesString = "";
 
             foreach (var chromosome in this.chromosomesList) {
-                chromosomesString += " " + chromosome.ToString() + ";";
+                chromosomesString += "\t" + chromosome.ToString() + "\n";
             }
 
-            return $"#{this.GenerationOrder} Size: {this.chromosomesList.Count} | {chromosomesString}";
+            return $"№{this.GenerationOrder,-3} S: {this.chromosomesList.Count,-3}\n{chromosomesString}";
         }
     }
 }
