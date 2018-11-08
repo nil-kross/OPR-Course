@@ -8,13 +8,14 @@ namespace Lomtseu {
     class Program {
         static void Main(string[] args)
         {
+            var range = 1000;
             Logger logger = new Logger();
-            Parameter x = new Parameter("X", 0, 3);
-            Parameter y = new Parameter("Y", -3, 0);
+            Parameter x = new Parameter("X", -1 * range , range);
+            Parameter y = new Parameter("Y", -1 * range, range);
             var @params = new List<Parameter>{
                 x, y
             };
-            Func<Chromosome, Fitness> fitness = (ind) => new Fitness(ind, ind[x] + ind[y]);
+            Func<Chromosome, Fitness> fitness = (ind) => new Fitness(ind, (-1 * ind[x] * ind[x] -1 * ind[y] * ind[y] + 4));
             Func<IEnumerable<Fitness>, Double, Population> selection = (IEnumerable<Fitness> fitnesses, Double part) => {
                 Population newPopulation = null;
 
@@ -45,28 +46,33 @@ namespace Lomtseu {
 
                 return newPopulation;
             };
-            StartingPopulationResolver populationResolver = new StartingPopulationResolver(new StartingPopulationResolver.RandomOptions(10, @params));
+            StartingPopulationResolver populationResolver = new StartingPopulationResolver(new StartingPopulationResolver.RandomOptions(1000, @params));
             GeneticAlgorithm ga = new GeneticAlgorithm(
                 populationResolver,
                 selection,
                 99,
                 fitness,
                 0.10,
-                0.40,
+                0.50,
                 null,
                 new TimeSpan(0, 0, 1, 0)
             );
 
-            Console.WriteLine(" Параметры:");
-            foreach (var par in @params) {
-                logger.WriteWithColor($"\t{par},\n", ConsoleColor.Gray);
-            }
-            logger.WriteWithColor(" Алгоритм начинает выполнение..\n", ConsoleColor.Gray);
-            var res = ga.Compute();
-            logger.WriteWithColor("\n Оптимальное решение:\n", ConsoleColor.Green);
-            Console.WriteLine($"Приспособленность={res.Value} | {res.Chromosome}");
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine(" Параметры:");
+                foreach (var par in @params)
+                {
+                    logger.WriteWithColor($"\t{par},\n", ConsoleColor.Gray);
+                }
+                logger.WriteWithColor(" Алгоритм начинает выполнение..\n", ConsoleColor.Gray);
+                var res = ga.Compute();
+                logger.WriteWithColor("\n Оптимальное решение:\n", ConsoleColor.Green);
+                Console.WriteLine($"Приспособленность={res.Value} | {res.Chromosome}");
 
-            Console.ReadKey();
+                Console.ReadKey();
+            }
         }
     }
 }

@@ -121,7 +121,8 @@ namespace Lomtseu {
                 }
             }
             foreach (var gene in this.genesList) {
-                argumentsString += $"{gene.Parameter.Name}={(gene[this.allelesArray]).ToString("G2")};";
+                var value = gene[this.allelesArray];
+                argumentsString += $"{gene.Parameter.Name}={value};";
             }
 
             return $"#{this.Id} [{allelesString}]=({argumentsString})";

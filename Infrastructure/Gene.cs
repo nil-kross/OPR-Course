@@ -49,7 +49,12 @@ namespace Lomtseu {
         }
 
         public Int32 Position {
-            get; set;
+            get {
+                return this.positionValue;
+            }
+            set {
+                this.positionValue = value;
+            }
         }
 
         public Int32 Length {

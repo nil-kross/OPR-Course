@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lomtseu {
     public class GeneticAlgorithm {
-        private Population startingPopulation;
+        private StartingPopulationResolver startingPopulationResolver = null;
         private Func<IEnumerable<Fitness>, Double, Population> selectionDelegate = null;
         private Func<Chromosome, Fitness> fitnessDelegate = null;
         private Double mutationChanceValue = 0.0f;
@@ -32,7 +32,7 @@ namespace Lomtseu {
                 throw new Exception("Доля отбора должена принадлежать полуинтервалу (0; 1]!");
             }
 
-            this.startingPopulation = resolver.StartingPopulation;
+            this.startingPopulationResolver = resolver;
             this.maxGenerationsCountValue = maxGenerationsCount;
             this.selectionDelegate = selection;
             this.fitnessDelegate = fitness;
@@ -43,10 +43,14 @@ namespace Lomtseu {
         }
 
         public Fitness Compute() {
+            if (this.startingPopulationResolver == null) {
+                throw new Exception("Starting population resolver was null!");
+            }
+
             Fitness optimalSolutionFitness = null;
             ISet<Chromosome> chromosomesSet = new HashSet<Chromosome>();
             var startingTimeValue = DateTime.Now;
-            var currentPopulation = this.startingPopulation;
+            var currentPopulation = this.startingPopulationResolver.StartingPopulation;
             var isEnd = false;
 
             /*
