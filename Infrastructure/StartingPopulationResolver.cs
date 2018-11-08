@@ -6,49 +6,60 @@ using System.Threading.Tasks;
 using static Lomtseu.Parameter;
 
 namespace Lomtseu {
-    public class StartingPopulationResolver {
-        public Population StartingPopulation { get; protected set; }
+    public abstract class StartingPopulationResolver {
+        public abstract Population StartingPopulation { get; protected set; }
+    }
 
-        public StartingPopulationResolver(Options options) {
-            this.StartingPopulation = options.StartingPopulation;
-        }
+    public class ManualStartingPopulationResolver : StartingPopulationResolver {
+        private Population startingPopulation = null;
 
-        public abstract class Options {
-            public Population StartingPopulation { get; protected set; }
-        }
-
-        public class ManualOptions : Options {
-            public ManualOptions(Population starting) {
-                this.StartingPopulation = starting;
+        public override Population StartingPopulation { 
+            get {
+                return this.startingPopulation;
+            }
+            protected set {
+                this.startingPopulation = value;
             }
         }
 
-        public class RandomOptions : Options {
-            public RandomOptions(Int32 populationSize, IEnumerable<Parameter> parameters) {
+        public ManualStartingPopulationResolver(Population starting) {
+            this.StartingPopulation = starting;
+        }
+    }
+
+    public class RandomStartingPopulationResolver : StartingPopulationResolver {
+        private Int32 populationSizeValue;
+        private IEnumerable<Parameter> parametersEnumerable;
+
+        public override Population StartingPopulation {
+            get {
                 Population startingPopulation = null;
+                IList<Chromosome> chromosomesList = new List<Chromosome>();
 
-                {
-                    IList<Chromosome> chromosomesList = new List<Chromosome>();
+                for (var i = 0; i < populationSizeValue; i++) {
+                    Chromosome chromosome = null;
 
-                    for (var i = 0; i < populationSize; i++) {
-                        Chromosome chromosome = null;
+                    {
+                        IList<Argument> arguments = new List<Argument>();
 
-                        {
-                            IList<Argument> arguments = new List<Argument>();
-
-                            foreach (var parameter in parameters) {
-                                arguments.Add(new Argument(parameter, parameter.GetRandomArgument().Value));
-                            }
-
-                            chromosome = new Chromosome(arguments);
-                            chromosomesList.Add(chromosome);
+                        foreach (var parameter in parametersEnumerable) {
+                            arguments.Add(new Argument(parameter, parameter.GetRandomArgument().Value));
                         }
-                    }
-                    startingPopulation = new Population(chromosomesList);
-                }
 
-                this.StartingPopulation = startingPopulation;
+                        chromosome = new Chromosome(arguments);
+                        chromosomesList.Add(chromosome);
+                    }
+                }
+                startingPopulation = new Population(chromosomesList);
+
+                return startingPopulation;
             }
+            protected set { }
+        }
+
+        public RandomStartingPopulationResolver(Int32 populationSize, IEnumerable<Parameter> parameters) {
+            this.populationSizeValue = populationSize;
+            this.parametersEnumerable = parameters;
         }
     }
 }
