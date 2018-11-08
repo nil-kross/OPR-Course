@@ -41,6 +41,8 @@ namespace Lomtseu {
             }
         }
 
+        public IList<Chromosome> Parents { get; internal set; }
+
         public Chromosome(IList<Argument> arguments) {
             this.genesList = new List<Gene>();
 
@@ -66,6 +68,13 @@ namespace Lomtseu {
 
                 gene[this.allelesArray] = arg.Value;
             }
+
+            this.GenerateId();
+        }
+
+        public Chromosome(Boolean[] alleles, IList<Gene> genes) {
+            this.allelesArray = alleles;
+            this.genesList = new List<Gene>(genes);
 
             this.GenerateId();
         }
@@ -126,6 +135,35 @@ namespace Lomtseu {
             }
 
             return $"#{this.Id} [{allelesString}]=({argumentsString})";
+        }
+
+        public static IEnumerable<Chromosome> Cross(Chromosome first, Chromosome second) {
+            List<Chromosome> childChromosomesList = null;
+
+            {
+                var lengthValue = first.allelesArray.Length;
+                var firstAllelesArray = new Boolean[lengthValue];
+                var secondAllelesArray = new Boolean[lengthValue];
+                var indexValue = GreatRandom.Next(1, lengthValue - 1);
+
+                for (var i = 0; i < indexValue; i++) {
+                    firstAllelesArray[i] = first.allelesArray[i];
+                    secondAllelesArray[i] = second.allelesArray[i];
+                }
+                for (var i = indexValue; i < lengthValue; i++) {
+                    firstAllelesArray[i] = second.allelesArray[i];
+                    secondAllelesArray[i] = first.allelesArray[i];
+                }
+                childChromosomesList = new List<Chromosome>() {
+                    new Chromosome(firstAllelesArray, first.genesList),
+                    new Chromosome(secondAllelesArray, first.genesList),
+                };
+                foreach (var childChromosome in childChromosomesList) {
+                    childChromosome.Parents = new Chromosome[2] { first, second };
+                }
+            }
+
+            return childChromosomesList;
         }
 
         private void GenerateId() {

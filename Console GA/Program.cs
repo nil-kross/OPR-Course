@@ -16,50 +16,47 @@ namespace Lomtseu {
                 x, y
             };
             Func<Chromosome, Fitness> fitness = (ind) => new Fitness(ind, (-1 * ind[x] * ind[x] -1 * ind[y] * ind[y] + 4));
-            Func<IEnumerable<Fitness>, Double, Population> selection = (IEnumerable<Fitness> fitnesses, Double part) => {
-                Population newPopulation = null;
+            Func<IEnumerable<Fitness>, Double, IEnumerable<Fitness>> selection = (IEnumerable<Fitness> fitnesses, Double part) => {
+                var chromosomesList = new List<Fitness>();
 
-                {
-                    var chromosomesList = new List<Chromosome>();
+                if (true) {
+                    var fitnessesArray = fitnesses.Reverse().ToArray();
+                    Array.Sort(fitnessesArray);
 
-                    if (true) {
-                        var fitnessesArray = fitnesses.Reverse().ToArray();
-                        Array.Sort(fitnessesArray);
+                    {
+                        var length = Math.Min(fitnessesArray.Length, (Int32)(part * fitnessesArray.Length));
 
-                        {
-                            var length = Math.Min(fitnessesArray.Length, (Int32)(part * fitnessesArray.Length));
-
-                            for (var i = 0; i < length; i++) {
-                                chromosomesList.Add(fitnessesArray[i].Chromosome);
-                            }
+                        for (var i = 0; i < length; i++) {
+                            chromosomesList.Add(fitnessesArray[i]);
                         }
                     }
-                    if (false) {
-                        foreach (var chromosomeFitness in fitnesses) {
+                }
+                if (false) {
+                    foreach (var chromosomeFitness in fitnesses) {
 
-                            chromosomesList.Add(chromosomeFitness.Chromosome);
-                        }
+                        chromosomesList.Add(chromosomeFitness);
                     }
-
-                    newPopulation = new Population(chromosomesList);
                 }
 
-                return newPopulation;
+                return chromosomesList;
             };
-            StartingPopulationResolver populationResolver = new RandomStartingPopulationResolver(1000, @params);
-            GeneticAlgorithm ga = new GeneticAlgorithm(
-                populationResolver,
-                selection,
-                99,
-                fitness,
-                0.10,
-                0.50,
-                null,
-                new TimeSpan(0, 0, 1, 0)
-            );
 
             while (true)
             {
+                //
+
+                StartingPopulationResolver populationResolver = new RandomStartingPopulationResolver(100, @params);
+                GeneticAlgorithm ga = new GeneticAlgorithm(
+                    populationResolver,
+                    selection,
+                    99,
+                    fitness,
+                    0.10,
+                    0.50,
+                    null,
+                    new TimeSpan(0, 0, 10, 0)
+                );
+
                 Console.Clear();
                 Console.WriteLine(" Параметры:");
                 foreach (var par in @params)

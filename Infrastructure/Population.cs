@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lomtseu {
     public class Population {
-        private static byte currentGenerationOrderValue = 0;
+        internal static byte currentGenerationOrderValue = 0;
 
         private IList<Chromosome> chromosomesList = null;
         private Byte generationOrderValue = 0;
