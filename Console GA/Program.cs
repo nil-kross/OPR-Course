@@ -8,7 +8,7 @@ namespace Lomtseu {
     class Program {
         static void Main(string[] args)
         {
-            var range = 1000;
+            var range = 100;
             Logger logger = new Logger();
             Parameter x = new Parameter("X", -1 * range , range);
             Parameter y = new Parameter("Y", -1 * range, range);
@@ -20,11 +20,12 @@ namespace Lomtseu {
                 var chromosomesList = new List<Fitness>();
 
                 if (true) {
-                    var fitnessesArray = fitnesses.Reverse().ToArray();
-                    Array.Sort(fitnessesArray);
+                    IList<Fitness> fitnessesArray = fitnesses.ToArray();
 
+                    Array.Sort((Array)fitnessesArray);
+                    fitnessesArray = new List<Fitness>(fitnessesArray.Reverse());
                     {
-                        var length = Math.Min(fitnessesArray.Length, (Int32)(part * fitnessesArray.Length));
+                        var length = Math.Min(fitnessesArray.Count, (Int32)(part * fitnessesArray.Count));
 
                         for (var i = 0; i < length; i++) {
                             chromosomesList.Add(fitnessesArray[i]);
@@ -45,7 +46,7 @@ namespace Lomtseu {
             {
                 //
 
-                StartingPopulationResolver populationResolver = new RandomStartingPopulationResolver(100, @params);
+                StartingPopulationResolver populationResolver = new RandomStartingPopulationResolver(10, @params);
                 GeneticAlgorithm ga = new GeneticAlgorithm(
                     populationResolver,
                     selection,

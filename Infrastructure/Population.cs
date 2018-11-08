@@ -31,7 +31,7 @@ namespace Lomtseu {
                 chromosomesString += "\t" + chromosome.ToString() + "\n";
             }
 
-            return $"№{this.GenerationOrder,-3} S: {this.chromosomesList.Count,-3}\n{chromosomesString}";
+            return $"№ {this.GenerationOrder,-3} S: {this.chromosomesList.Count,-3}\n{chromosomesString}";
         }
     }
 }
