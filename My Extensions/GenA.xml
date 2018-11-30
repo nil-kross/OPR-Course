@@ -1,0 +1,17 @@
+<extension version="1" name="GenA">
+  <guid>8abc3e0a-f511-494f-ae56-e981f3e9029d</guid>
+  <script src="GenA.py" />
+  <interface context="Project">    
+    <images>images</images>
+    <callbacks>
+      <oninit>init</oninit>
+    </callbacks>
+    <toolbar name="GenA" caption="GenA">
+      <entry name="HighFive" icon="hand">
+        <callbacks>
+          <onclick>HighFiveOut</onclick>
+        </callbacks>
+      </entry>
+    </toolbar>
+  </interface>
+</extension>
