@@ -32,8 +32,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ansys.ACT.Core">
+      <HintPath>..\DLLs\Ansys.ACT.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Ansys.ACT.Interfaces">
-      <HintPath>C:\Program Files\ANSYS\ANSYS Inc\v170\Addins\ACT\bin\Win64\Ansys.ACT.Interfaces.dll</HintPath>
+      <HintPath>..\DLLs\Ansys.ACT.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Ansys.ACT.Interop">
+      <HintPath>..\DLLs\Ansys.ACT.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="Ansys.ACT.WorkBench">
+      <HintPath>..\DLLs\Ansys.ACT.WorkBench.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Load.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
