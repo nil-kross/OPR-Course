@@ -136,3 +136,4 @@ _NCrunch*
 .vs/
 Infrastructure/bin/
 Infrastructure/obj/
+!DLLs/*
