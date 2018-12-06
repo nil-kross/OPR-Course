@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Ansys_Test {
     class Program {
         static void Main(string[] args) {
-            var context = new ProjectApplicationAPI;
+
             Console.ReadKey();
         }
     }

@@ -1,0 +1,33 @@
+<extension version="1" name="WorkflowCallbacksDemo">
+  <guid shortid="WorkflowCallbacksDemo">96d0195b-e138-4841-a13a-de12238c83f2</guid>
+  <script src="main.py" />
+  <interface context="Project">
+    <images>images</images>
+  </interface>
+  <workflow name="WorkflowDemo1" context="Project" version="1">
+    <callbacks>
+      <onbeforetaskreset>onBeforeReset</onbeforetaskreset>
+      <onaftertaskreset>onAfterReset</onaftertaskreset>
+      <onbeforetaskrefresh>onBeforeRefresh</onbeforetaskrefresh>
+      <onaftertaskrefresh>onAfterRefresh</onaftertaskrefresh>
+      <onbeforetaskupdate>onBeforeUpdate</onbeforetaskupdate>
+      <onaftertaskupdate>onAfterUpdate</onaftertaskupdate>
+      <onbeforetaskduplicate>onBeforeDuplicate</onbeforetaskduplicate>
+      <onaftertaskduplicate>onAfterDuplicate</onaftertaskduplicate>
+      <onbeforetasksourceschanged>onBeforeSourcesChanged</onbeforetasksourceschanged>
+      <onaftertasksourceschanged>onAfterSourcesChanged</onaftertasksourceschanged>
+      <onbeforetaskcreation>onBeforeCreate</onbeforetaskcreation>
+      <onaftertaskcreation>onAfterCreate</onaftertaskcreation>
+      <onbeforetaskdeletion>onBeforeDelete</onbeforetaskdeletion>
+      <onaftertaskdeletion>onAfterDelete</onaftertaskdeletion>
+      <onbeforetaskcanusetransfer>onBeforeCanUseTransfer</onbeforetaskcanusetransfer>
+      <onaftertaskcanusetransfer>onAfterCanUseTransfer</onaftertaskcanusetransfer>
+      <onbeforetaskcanduplicate>onBeforeCanDuplicate</onbeforetaskcanduplicate>
+      <onaftertaskcanduplicate>onAfterCanDuplicate</onaftertaskcanduplicate>
+      <onbeforetaskstatus>onBeforeStatus</onbeforetaskstatus>
+      <onaftertaskstatus>onAfterStatus</onaftertaskstatus>
+      <onbeforetaskpropertyretrieval>onBeforePropertyRetrieval</onbeforetaskpropertyretrieval>
+      <onaftertaskpropertyretrieval>onAfterPropertyRetrieval</onaftertaskpropertyretrieval>
+    </callbacks>
+  </workflow>
+</extension>

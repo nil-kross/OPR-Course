@@ -4,7 +4,5 @@ from Ansys.UI.Toolkit import *
 
 def init(context):    
 	ExtAPI.Log.WriteMessage("Init ExtSample1...")
-	ExtAPI.Log.WriteMessage(context) 
 def HighFiveOut(analysis_obj):    
-	MessageBox.Show(analysis_obj)
-	MessageBox.Show("GenA!")
+	MessageBox.Show("High five! ExtSample1 is a success!")

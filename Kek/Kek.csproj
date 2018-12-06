@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CA744540-8AB4-408C-9FC9-18E849F42ECC}</ProjectGuid>
+    <ProjectGuid>{D2D5E9AC-65C2-4091-BC07-8990DD5C8BD7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ansys</RootNamespace>
-    <AssemblyName>Ansys</AssemblyName>
+    <RootNamespace>Kek</RootNamespace>
+    <AssemblyName>Kek</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,24 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ansys.ACT.Core">
-      <HintPath>C:\Program Files\ANSYS\ANSYS Inc\v170\Addins\ACT\bin\Win64\Ansys.ACT.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Ansys.ACT.Fluent">
-      <HintPath>C:\Program Files\ANSYS\ANSYS Inc\v170\Addins\ACT\bin\Win64\Ansys.ACT.Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Ansys.ACT.Interfaces">
-      <HintPath>C:\Program Files\ANSYS\ANSYS Inc\v170\Addins\ACT\bin\Win64\Ansys.ACT.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="Ansys.ACT.Interop">
-      <HintPath>C:\Program Files\ANSYS\ANSYS Inc\v170\Addins\ACT\bin\Win64\Ansys.ACT.Interop.dll</HintPath>
-    </Reference>
-    <Reference Include="Ansys.ACT.WB1">
-      <HintPath>C:\Program Files\ANSYS\ANSYS Inc\v170\Addins\ACT\bin\Win64\Ansys.ACT.WB1.dll</HintPath>
-    </Reference>
-    <Reference Include="Ansys.ACT.WorkBench">
-      <HintPath>C:\Program Files\ANSYS\ANSYS Inc\v170\Addins\ACT\bin\Win64\Ansys.ACT.WorkBench.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -59,25 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenA.cs" />
+    <Compile Include="Kek.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="stdole">
-      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
