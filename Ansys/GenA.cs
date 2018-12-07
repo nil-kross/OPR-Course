@@ -1,5 +1,7 @@
-﻿using Ansys.ACT.Interfaces.Common;
+﻿using Ansys.ACT.Core;
+using Ansys.ACT.Interfaces.Common;
 using System;
+using Ansys.ACT.WorkBench.Project;
 
 namespace Ansys {
     public class GenA {
@@ -7,6 +9,8 @@ namespace Ansys {
 
         public GenA(IExtAPI api = null) {
             this.api = api;
+
+            Extension a = api as ExtensionAPI;
         }
 
         public override String ToString() {
