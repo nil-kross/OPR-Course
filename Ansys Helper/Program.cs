@@ -11,7 +11,7 @@ namespace Ansys_Helper {
         static void Main(string[] args) {
             var xmlTemplateString =
 @"
-<extension version='@[Verison]' name='@[Name]'>
+<extension version='@[Version]' name='@[Name]'>
   <author>Lomtseu</author>
   <guid>@[Guid]</guid>
   <script src='main.py'/>
