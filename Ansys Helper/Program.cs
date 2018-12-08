@@ -14,7 +14,8 @@ namespace Ansys_Helper {
 <extension version='@[Verison]' name='@[Name]'>
   <author>Lomtseu</author>
   <guid>@[Guid]</guid>
-  <interface context='Project'>    
+  <script src='main.py'/>
+  <interface context='Project'>
     <images>images</images>
     <callbacks>
       <oninit>init</oninit>
