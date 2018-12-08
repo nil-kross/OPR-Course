@@ -10,7 +10,6 @@ namespace Ansys {
         public GenA(IExtAPI api = null) {
             this.api = api;
 
-            Extension a = api as ExtensionAPI;
         }
 
         public override String ToString() {
