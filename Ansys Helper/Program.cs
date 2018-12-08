@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Ansys_Helper {
@@ -11,10 +12,11 @@ namespace Ansys_Helper {
         static void Main(string[] args) {
             var xmlTemplateString =
 @"
-<extension version='@[Version]' name='@[Name]'>
+<extension version='@[Version]' name='@[Name]' debug='true'>
   <author>Lomtseu</author>
   <guid>@[Guid]</guid>
-  <script src='main.py'/>
+  <description>Course work.</description>
+  <appStoreId>1488</appStoreId>
   <interface context='Project'>
     <images>images</images>
     <callbacks>
@@ -69,14 +71,42 @@ def HighFiveOut(analysis_obj):
                         strings[i] = strings[i].Replace(key, values[key]);
                     }
                 }
+
+                xmlTemplateString = strings[0];
+                pyTemplateString = strings[1];
             }
 
             Program.RecreateMyExtensionsFolder(ansysFolderString + myExtensionsString);
+            Program.CreateFile(ansysFolderString + myExtensionsString, name + ".xml", xmlTemplateString);
+            Program.CreateFile(ansysFolderString + myExtensionsString + name, '\\' + "main" + ".py", pyTemplateString);
 
-            File.Create(ansysFolderString + myExtensionsString + name + ".xml").Close();
-            StreamWriter streamWriter = new StreamWriter(ansysFolderString + myExtensionsString + name + ".xml", true);
-            streamWriter.Write(xmlTemplateString);
-            streamWriter.Flush();
+            {
+                var dllPathwayString = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Ansys\bin\Debug\Ansys.dll");
+
+                if (File.Exists(dllPathwayString)) {
+                    var ansysVersionString = "v170";
+                    var directoriesArray = Directory.GetDirectories(ansysFolderString + @"ANSYS Inc\");
+                    var regex = new Regex("[v].*");
+
+                    foreach (var directory in directoriesArray) {
+                        var folder = directory.Split('\\').Reverse().First();
+                        var match = regex.Match(folder);
+
+                        if (match != null) {
+                            ansysVersionString = directory;
+                        }
+                    }
+
+                    {
+                        var destinationFolderString = ansysVersionString + @"\Addins\ACT\bin\Win64\";
+
+                        if (File.Exists(destinationFolderString + "Ansys.dll")) {
+                            File.Delete(destinationFolderString + "Ansys.dll");
+                        }
+                        File.Move(dllPathwayString, destinationFolderString + "Ansys.dll");
+                    }
+                }
+            }
         }
 
         public static void RecreateMyExtensionsFolder(String myExtensionsPathway) {
@@ -90,6 +120,19 @@ def HighFiveOut(analysis_obj):
 
             if (!Directory.Exists(myExtensionsPathway)) {
                 Directory.CreateDirectory(myExtensionsPathway);
+            }
+        }
+
+        public static void CreateFile(String folderPathway, String fileName, String content) {
+            if (!Directory.Exists(folderPathway)) {
+                Directory.CreateDirectory(folderPathway);
+            }
+            File.Create(folderPathway + '\\' + fileName).Close();
+            if (File.Exists(folderPathway + '\\' + fileName)) {
+                StreamWriter streamWriter = new StreamWriter(folderPathway + '\\' + fileName, true);
+
+                streamWriter.Write(content);
+                streamWriter.Flush();
             }
         }
     }
