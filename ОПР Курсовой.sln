@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ansys", "Ansys\Ansys.csproj", "{CA744540-8AB4-408C-9FC9-18E849F42ECC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACT Helper", "Ansys Helper\ACT Helper.csproj", "{9622194E-1210-4E0B-A72D-EAA601CA84AB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CA744540-8AB4-408C-9FC9-18E849F42ECC} = {CA744540-8AB4-408C-9FC9-18E849F42ECC}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
