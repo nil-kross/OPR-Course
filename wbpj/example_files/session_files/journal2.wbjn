@@ -1,0 +1,6 @@
+﻿# encoding: utf-8
+# Release 17.0
+SetScriptVersion(Version="17.0.323")
+system1 = GetSystem(Name="DOP")
+system1.Delete()
+Save(Overwrite=True)

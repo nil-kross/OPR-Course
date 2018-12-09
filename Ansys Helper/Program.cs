@@ -17,19 +17,29 @@ namespace Ansys_Helper {
   <guid>@[Guid]</guid>
   <description>Course work.</description>
   <appStoreId>1488</appStoreId>
-  <interface context='Project'>
-    <images>images</images>
-    <callbacks>
-      <oninit>init</oninit>
-    </callbacks>
-    <toolbar name='@[Name]' caption='@[Name]'>
-      <entry name='Start' icon='@[Icon]'>
-        <callbacks>
-          <onclick>Start</onclick>
-        </callbacks>
-      </entry>
-    </toolbar>
-  </interface>
+  <script src='main.py'/>
+
+  <simdata context='DesignXplorer | Project'>
+    <optimizer
+      name='@[Name]'
+      caption='@[Name]'
+      version='@[Version]'>
+      <callbacks>
+        <OnCreate>OnCreate</OnCreate>
+        <CanRun>CanRun</CanRun>
+        <Description>Description</Description>
+        <Configuration>Configuration</Configuration>
+        <Status>Status</Status>
+        <QuickHelp>QuickHelp</QuickHelp>
+        <InputParametersEdited>InputParametersEdited</InputParametersEdited>
+        <MethodPropertiesEdited>MethodPropertiesEdited</MethodPropertiesEdited>
+        <OnMigrate>OnMigrate</OnMigrate>
+        <OnRelease>OnRelease</OnRelease>
+      </callbacks>
+      <property name='GenerationsAmount' caption='Generations Amount' control='integer' default='10' />
+    </optimizer>
+  </simdata>
+
 </extension>
 ";
             var pyTemplateString =
@@ -40,13 +50,67 @@ clr.AddReference('Ansys')
 from Ansys.UI.Toolkit import *
 from Ansys import *
 
-def init(context):
-    ExtAPI.Log.WriteMessage('Init ExtSample1...')
-def HighFiveOut(analysis_obj):
-    MessageBox.Show('High five! ExtSample1 is a success!')
-    MessageBox.Show(analysis_obj.ToString())
-    MessageBox.Show(ExtAPI.DataModel.ToString())
+def init(entity):
+    ExtAPI.Log.WriteMessage(entity.ToString())
+def OnCreate(entity):
+    generations = entity.Properties['GenerationsAmount'].Value
+
+    return GenAlOptimizer(generations)
+def CanRun(entity):
+    ExtAPI.Log.WriteMessage('CanRun is called!')
+    ExtAPI.Log.WriteMessage(entity.ToString())
+    ExtAPI.Log.WriteMessage(entity.GetType().Assembly.FullName)
+def Description(entity):
+    ExtAPI.Log.WriteMessage('Description is called!')
+    ExtAPI.Log.WriteMessage(entity.ToString())
+    ExtAPI.Log.WriteMessage(entity.GetType().Assembly.FullName)
+def Configuration(entity):
+    ExtAPI.Log.WriteMessage('Configuration is called!')
+    ExtAPI.Log.WriteMessage(entity.ToString())
+    ExtAPI.Log.WriteMessage(entity.GetType().Assembly.FullName)
+def Status(entity):
+    ExtAPI.Log.WriteMessage('Status is called!')
+    ExtAPI.Log.WriteMessage(entity.ToString())
+    ExtAPI.Log.WriteMessage(entity.GetType().Assembly.FullName)
+def QuickHelp(entity):
+    ExtAPI.Log.WriteMessage('QuickHelp is called!')
+    ExtAPI.Log.WriteMessage(entity.ToString())
+    ExtAPI.Log.WriteMessage(entity.GetType().Assembly.FullName)
+def InputParametersEdited(entity):
+    ExtAPI.Log.WriteMessage('InputParametersEdited is called!')
+    ExtAPI.Log.WriteMessage(entity.ToString())
+    ExtAPI.Log.WriteMessage(entity.GetType().Assembly.FullName)
+def MethodPropertiesEdited(entity):
+    ExtAPI.Log.WriteMessage('MethodPropertiesEdited is called!')
+    ExtAPI.Log.WriteMessage(entity.ToString())
+    ExtAPI.Log.WriteMessage(entity.GetType().Assembly.FullName)
+def OnMigrate(entity):
+    ExtAPI.Log.WriteMessage('OnMigrate is called!')
+    ExtAPI.Log.WriteMessage(entity.ToString())
+    ExtAPI.Log.WriteMessage(entity.GetType().Assembly.FullName)
+def OnRelease(entity):
+    ExtAPI.Log.WriteMessage('OnRelease is called!')
+    ExtAPI.Log.WriteMessage(entity.ToString())
+    ExtAPI.Log.WriteMessage(entity.GetType().Assembly.FullName)
 ";
+            /*
+Extension GenAl loaded for context DesignXplorer.
+InputParametersEdited is called!
+CanRun is called!
+Description is called!
+Configuration is called!
+Status is called!
+Description is called!
+Configuration is called!
+Status is called!
+Description is called!
+Configuration is called!
+Status is called!
+Description is called!
+Configuration is called!
+Status is called!
+            */
+            
             var ansysFolderString = @"C:\Program Files\ANSYS\";
             var myExtensionsString = @"My Extensions\";
             var name = "GenAl";
@@ -59,7 +123,7 @@ def HighFiveOut(analysis_obj):
             values["@[Guid]"] = guid.ToString();
             values["@[Name]"] = name;
             values["@[Icon]"] = icon;
-
+            
             {
                 String[] strings = {
                     xmlTemplateString,

@@ -1,0 +1,14 @@
+﻿# encoding: utf-8
+# Release 17.0
+SetScriptVersion(Version="17.0.323")
+system1 = GetSystem(Name="DOP")
+optimization1 = system1.GetContainer(ComponentName="Optimization")
+optimizationModel1 = optimization1.GetModel()
+optimizationModel1.MethodName = "ANSYS_SCREENING"
+screeningOptimization1 = optimizationModel1.Method
+screeningOptimization1.NumberOfSamples = 10
+screeningOptimization1.NumberOfSamples = 3
+outputParameter1 = optimizationModel1.GetParameter(Name="P11")
+optimizationCriterion1 = outputParameter1.CreateOptimizationCriterion()
+optimizationCriterion1.ObjectiveType = "GT_MinimumPossible"
+Save(Overwrite=True)

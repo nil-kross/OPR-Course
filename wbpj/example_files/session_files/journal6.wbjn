@@ -1,0 +1,36 @@
+﻿# encoding: utf-8
+# Release 17.0
+SetScriptVersion(Version="17.0.323")
+system1 = GetSystem(Name="DOP")
+optimization1 = system1.GetContainer(ComponentName="Optimization")
+optimizationModel1 = optimization1.GetModel()
+inputParameter1 = optimizationModel1.GetParameter(Name="P1")
+inputParameter1.Enabled = False
+inputParameter2 = optimizationModel1.GetParameter(Name="P2")
+inputParameter2.Enabled = False
+inputParameter3 = optimizationModel1.GetParameter(Name="P3")
+inputParameter3.Enabled = False
+inputParameter4 = optimizationModel1.GetParameter(Name="P4")
+inputParameter4.Enabled = False
+inputParameter5 = optimizationModel1.GetParameter(Name="P5")
+inputParameter5.Enabled = False
+inputParameter6 = optimizationModel1.GetParameter(Name="P7")
+inputParameter6.Enabled = False
+inputParameter7 = optimizationModel1.GetParameter(Name="P8")
+inputParameter7.Enabled = False
+inputParameter8 = optimizationModel1.GetParameter(Name="P6")
+inputParameter8.Enabled = False
+inputParameter9 = optimizationModel1.GetParameter(Name="P9")
+inputParameter9.Enabled = False
+Save(Overwrite=True)
+optimizationComponent1 = system1.GetComponent(Name="Optimization")
+optimizationComponent1.Update(AllDependencies=True)
+optimizationComponent1.Clean()
+optimizationModel1.MethodName = "GenAl@GenAl"
+Save(Overwrite=True)
+optimizationComponent1.Update(AllDependencies=True)
+optimizationComponent1.Update(AllDependencies=True)
+optimizationComponent1.Update(AllDependencies=True)
+optimizationComponent1.Update(AllDependencies=True)
+optimizationComponent1.Update(AllDependencies=True)
+Save(Overwrite=True)

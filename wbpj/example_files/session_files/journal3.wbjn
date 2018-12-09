@@ -1,0 +1,22 @@
+﻿# encoding: utf-8
+# Release 17.0
+SetScriptVersion(Version="17.0.323")
+template1 = GetTemplate(TemplateName="Direct Optimization")
+system1 = template1.CreateSystem()
+Save(Overwrite=True)
+Extensions.LoadExtension(
+    Id="00000000-0000-0000-0000-000000000000",
+    Version="937533906.0",
+    Format="Scripted")
+optimization1 = system1.GetContainer(ComponentName="Optimization")
+optimizationModel1 = optimization1.GetModel()
+optimizationModel1.MethodName = "GenAl@GenAl"
+optimizationComponent1 = system1.GetComponent(Name="Optimization")
+optimizationComponent1.Update(AllDependencies=True)
+inputParameter1 = optimizationModel1.GetParameter(Name="P10")
+optimizationCriterion1 = inputParameter1.CreateOptimizationCriterion()
+optimizationModel1.DeleteOptimizationCriteria(OptimizationCriteria=[optimizationCriterion1, optimizationCriterion1, optimizationCriterion1, optimizationCriterion1, optimizationCriterion1, optimizationCriterion1, optimizationCriterion1])
+system2 = GetSystem(Name="SYS")
+setup1 = system2.GetContainer(ComponentName="Setup")
+setup1.Edit()
+Save(Overwrite=True)

@@ -9,11 +9,17 @@ namespace Ansys {
 
         public GenA(IExtAPI api = null) {
             this.api = api;
-
         }
 
         public override String ToString() {
-            return "GenA says" + this.api?.Context ?? "null";
+            var str = "GenA says " + this.api?.Context ?? "null";
+
+            dynamic e = (api as dynamic).DataModel;
+            if (e != null) {
+                str += " also " + e.ToString();
+            }
+
+            return str;
         }
 
         public String ToString(params dynamic[] args) {

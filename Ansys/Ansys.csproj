@@ -31,6 +31,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ans.Addins.Infrastructure">
+      <HintPath>..\DLLs\Ans.Addins.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Ans.Common.Utilities">
+      <HintPath>..\DLLs\Ans.Common.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Ans.ComponentSystem.Interop">
+      <HintPath>..\DLLs\Ans.ComponentSystem.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="Ans.Core">
+      <HintPath>..\DLLs\Ans.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Ans.DesignXplorer.Commands">
+      <HintPath>..\DLLs\Ans.DesignXplorer.Commands.dll</HintPath>
+    </Reference>
+    <Reference Include="Ans.DesignXplorer.GUI">
+      <HintPath>..\DLLs\Ans.DesignXplorer.GUI.dll</HintPath>
+    </Reference>
+    <Reference Include="Ans.DesignXplorer.PublicAPIs">
+      <HintPath>..\DLLs\Ans.DesignXplorer.PublicAPIs.dll</HintPath>
+    </Reference>
     <Reference Include="Ansys.ACT.Core">
       <HintPath>C:\Program Files\ANSYS\ANSYS Inc\v170\Addins\ACT\bin\Win64\Ansys.ACT.Core.dll</HintPath>
     </Reference>
@@ -49,6 +70,9 @@
     <Reference Include="Ansys.ACT.WorkBench">
       <HintPath>C:\Program Files\ANSYS\ANSYS Inc\v170\Addins\ACT\bin\Win64\Ansys.ACT.WorkBench.dll</HintPath>
     </Reference>
+    <Reference Include="DesignXplorer.Interop">
+      <HintPath>..\DLLs\DesignXplorer.Interop.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -60,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GenA.cs" />
+    <Compile Include="GenAlOptimizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

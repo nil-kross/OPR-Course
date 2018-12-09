@@ -1,0 +1,20 @@
+﻿# encoding: utf-8
+# Release 17.0
+SetScriptVersion(Version="17.0.323")
+system1 = GetSystem(Name="DOP")
+optimization1 = system1.GetContainer(ComponentName="Optimization")
+optimizationModel1 = optimization1.GetModel()
+screeningOptimization1 = optimizationModel1.Method
+screeningOptimization1.NumberOfSamples = 10
+screeningOptimization1.MaxNumCandidates = 1
+optimizationComponent1 = system1.GetComponent(Name="Optimization")
+optimizationComponent1.Update(AllDependencies=True)
+inputParameter1 = optimizationModel1.GetParameter(Name="P9")
+optimizationCriterion1 = inputParameter1.GetOptimizationCriterion()
+optimizationCriterion1.LowerBound = 0.1
+optimizationCriterion1.UpperBound = 2
+inputParameter2 = optimizationModel1.GetParameter(Name="P10")
+optimizationCriterion2 = inputParameter2.GetOptimizationCriterion()
+optimizationCriterion2.LowerBound = 0.1
+optimizationCriterion2.UpperBound = 2
+Save(Overwrite=True)
