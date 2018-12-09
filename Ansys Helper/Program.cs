@@ -50,32 +50,33 @@ clr.AddReference('Ansys')
 from Ansys.UI.Toolkit import *
 from Ansys import *
 
-def init(entity):
-    ExtAPI.Log.WriteMessage(entity.ToString())
 def OnCreate(entity):
     generations = entity.Properties['GenerationsAmount'].Value
 
     return GenAlOptimizer(generations)
 def CanRun(entity):
-    ExtAPI.Log.WriteMessage('CanRun is called!')
-    ExtAPI.Log.WriteMessage(entity.ToString())
-    ExtAPI.Log.WriteMessage(entity.GetType().Assembly.FullName)
-def Description(entity):
-    ExtAPI.Log.WriteMessage('Description is called!')
-    ExtAPI.Log.WriteMessage(entity.ToString())
-    ExtAPI.Log.WriteMessage(entity.GetType().Assembly.FullName)
-def Configuration(entity):
-    ExtAPI.Log.WriteMessage('Configuration is called!')
-    ExtAPI.Log.WriteMessage(entity.ToString())
-    ExtAPI.Log.WriteMessage(entity.GetType().Assembly.FullName)
-def Status(entity):
-    ExtAPI.Log.WriteMessage('Status is called!')
-    ExtAPI.Log.WriteMessage(entity.ToString())
-    ExtAPI.Log.WriteMessage(entity.GetType().Assembly.FullName)
+    generations = entity.Properties['GenerationsAmount'].Value
+
+    if generations > 0:
+        return True
+    else:
+        return False
 def QuickHelp(entity):
-    ExtAPI.Log.WriteMessage('QuickHelp is called!')
-    ExtAPI.Log.WriteMessage(entity.ToString())
-    ExtAPI.Log.WriteMessage(entity.GetType().Assembly.FullName)
+    generations = entity.Properties['GenerationsAmount'].Value
+
+    if generations > 0:
+        return 'OK'
+    else:
+        return 'Generations Amount field value should be greater then 0!'
+def Description(entity):
+    return 'Daniil Lomtseu course project.'
+def Configuration(entity):
+    generations = entity.Properties['GenerationsAmount'].Value
+    configuration = 'Generates %d points.' %(generations)
+
+    return configuration
+def Status(entity):
+    return 'IDK'
 def InputParametersEdited(entity):
     ExtAPI.Log.WriteMessage('InputParametersEdited is called!')
     ExtAPI.Log.WriteMessage(entity.ToString())
@@ -84,32 +85,11 @@ def MethodPropertiesEdited(entity):
     ExtAPI.Log.WriteMessage('MethodPropertiesEdited is called!')
     ExtAPI.Log.WriteMessage(entity.ToString())
     ExtAPI.Log.WriteMessage(entity.GetType().Assembly.FullName)
-def OnMigrate(entity):
+def OnMigrate(old, new):
     ExtAPI.Log.WriteMessage('OnMigrate is called!')
-    ExtAPI.Log.WriteMessage(entity.ToString())
-    ExtAPI.Log.WriteMessage(entity.GetType().Assembly.FullName)
 def OnRelease(entity):
-    ExtAPI.Log.WriteMessage('OnRelease is called!')
-    ExtAPI.Log.WriteMessage(entity.ToString())
-    ExtAPI.Log.WriteMessage(entity.GetType().Assembly.FullName)
+    ExtAPI.Log.WriteMessage('Shutting down..')
 ";
-            /*
-Extension GenAl loaded for context DesignXplorer.
-InputParametersEdited is called!
-CanRun is called!
-Description is called!
-Configuration is called!
-Status is called!
-Description is called!
-Configuration is called!
-Status is called!
-Description is called!
-Configuration is called!
-Status is called!
-Description is called!
-Configuration is called!
-Status is called!
-            */
             
             var ansysFolderString = @"C:\Program Files\ANSYS\";
             var myExtensionsString = @"My Extensions\";
