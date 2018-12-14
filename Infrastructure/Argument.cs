@@ -10,11 +10,15 @@ namespace Lomtseu {
         private Decimal value = Decimal.Zero;
 
         public Parameter Parameter {
-            get => this.parameter;
+            get {
+                return this.parameter;
+            }
         }
 
         public Decimal Value {
-            get => this.value;
+            get {
+                return this.value;
+            }
         }
 
         public Argument(

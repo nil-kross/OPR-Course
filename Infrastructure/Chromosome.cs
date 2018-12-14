@@ -24,7 +24,9 @@ namespace Lomtseu {
         }
 
         public IEnumerable<Gene> Genes {
-            get => this.genesList;
+            get {
+                return this.genesList;
+            }
         }
 
         public Decimal this[Parameter parameter] {

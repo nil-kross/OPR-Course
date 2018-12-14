@@ -12,11 +12,15 @@ namespace Lomtseu {
         private Byte generationOrderValue = 0;
 
         public IList<Chromosome> Chromosomes {
-            get => this.chromosomesList;
+            get {
+                return this.chromosomesList;
+            }
         }
 
         public Byte GenerationOrder {
-            get => this.generationOrderValue;
+            get {
+                return this.generationOrderValue;
+            }
         }
 
         public Population(IEnumerable<Chromosome> chromosomes) {

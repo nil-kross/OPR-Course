@@ -10,11 +10,15 @@ namespace Lomtseu {
         private Decimal value = 0;
 
         public Chromosome Chromosome {
-            get => this.chromosome;
+            get {
+                return this.chromosome;
+            }
         }
 
         public Decimal Value {
-            get => this.value;
+            get {
+                return this.value;
+            }
         }
 
         public Fitness(Chromosome chromosome, Decimal value) {

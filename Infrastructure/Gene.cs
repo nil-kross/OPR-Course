@@ -82,7 +82,9 @@ namespace Lomtseu {
         }
 
         public Parameter Parameter {
-            get => this.parameter;
+            get {
+                return this.parameter;
+            }
         }
 
         public Gene(Parameter parameter) {
