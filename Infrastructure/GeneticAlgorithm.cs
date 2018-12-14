@@ -125,6 +125,7 @@ namespace Lomtseu {
                             }
                             this.logger.WriteWithColor(" мутировали!\n", ConsoleColor.Red);
                         }
+                        chromosomesPoolList = new List<Chromosome>(chromosomesPoolList.Union(mutatedChromosomesSet));
                     }
                     // Размножение:
                     {
@@ -167,7 +168,6 @@ namespace Lomtseu {
                             chromosomesPoolList
                                 .Union(crossedChromosomesList)
                                 .Union(childChromosomesList)
-                                .Union(mutatedChromosomesSet)
                         );
                     }
                 }

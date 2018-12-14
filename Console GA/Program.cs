@@ -43,10 +43,7 @@ namespace Lomtseu {
             };
 
             while (true)
-            {
-                //
-
-                StartingPopulationResolver populationResolver = new RandomStartingPopulationResolver(10, @params);
+            {StartingPopulationResolver populationResolver = new RandomStartingPopulationResolver(10, @params);
                 GeneticAlgorithm ga = new GeneticAlgorithm(
                     populationResolver,
                     selection,
