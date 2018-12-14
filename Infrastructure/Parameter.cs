@@ -31,11 +31,14 @@ namespace Lomtseu {
             }
         }
 
-        public Parameter(String name, Decimal min, Decimal max)
+        public Nullable<Byte> Accuracy { get; protected set; }
+
+        public Parameter(String name, Decimal? min = null, Decimal? max = null, Byte? accuracy = 0)
         {
             this.nameString = name;
             this.minValue = min;
             this.maxValue = max;
+            this.Accuracy = accuracy;
         }
 
         public Argument GetRandomArgument()
@@ -47,12 +50,12 @@ namespace Lomtseu {
                 ) + GreatRandom.NextDouble()
             );
 
-            return new Argument(this, value);
+            return new Argument(this, Math.Round(value, (Int32)this.Accuracy));
         }
 
         public override String ToString()
         {
-            return String.Format("{0,3} < {1} < {2,3}", this.Min,  this.Name, this.Max);
+            return String.Format("{0,3} < {1} < {2,3} .{3}", this.Min,  this.Name, this.Max, this.Accuracy);
         }
     }
 }

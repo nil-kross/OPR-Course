@@ -43,6 +43,7 @@ namespace Lomtseu {
                         }
 
                         chromosome = new Chromosome(arguments);
+                        var val = chromosome.ToString();// DEBUG
                         chromosomesList.Add(chromosome);
                     }
                 }

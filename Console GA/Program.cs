@@ -10,8 +10,8 @@ namespace Lomtseu {
         {
             var range = 100;
             Logger logger = new Logger();
-            Parameter x = new Parameter("X", -1 * range , range);
-            Parameter y = new Parameter("Y", -1 * range, range);
+            Parameter x = new Parameter("X", -1 * range , range, 1);
+            Parameter y = new Parameter("Y", -1 * range, range, 1);
             var @params = new List<Parameter>{
                 x, y
             };

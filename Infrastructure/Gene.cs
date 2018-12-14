@@ -18,14 +18,14 @@ namespace Lomtseu {
                         value += (alleles[i] ? 1 : 0) * mulpiplicatorValue;
                         mulpiplicatorValue *= 2;
                     }
-                    value += this.parameter.Min;
+                    value = Math.Round(value / this.Multiplier + this.parameter.Min , (Int32)this.parameter.Accuracy);
                 }
 
                 return value;
             }
             set {
                 if (this.IsValid(alleles, value)) {
-                    var currValue = value + Math.Abs(this.parameter.Min);
+                    var currValue = (value + Math.Abs(this.parameter.Min)) * this.Multiplier;
                     var i = this.positionValue;
 
                     for (var j = this.positionValue; j < this.positionValue + this.lengthValue; j++) {
@@ -58,7 +58,7 @@ namespace Lomtseu {
                     Int32 length = 0;
 
                     {
-                        Int32 amplitudeValue = (Int32)(this.parameter.Max - this.parameter.Min);
+                        Int32 amplitudeValue = (Int32)(this.parameter.Max - this.parameter.Min) * this.Multiplier;
                         
                         while (amplitudeValue > 0) {
                             amplitudeValue /= 2;
@@ -73,6 +73,18 @@ namespace Lomtseu {
             }
             protected set {
                 this.lengthValue = value;
+            }
+        }
+
+        protected Int32 Multiplier {
+            get {
+                Int32 multiplierValue = 1;
+
+                for (var i = 0; i < this.parameter.Accuracy; i++) {
+                    multiplierValue *= 10;
+                }
+
+                return multiplierValue;
             }
         }
 
