@@ -122,7 +122,7 @@ namespace Lomtseu {
                         if (mutatedChromosomesSet.Count > 0) {
                             logger.WriteWithColor(" Хромосомы ", ConsoleColor.Red);
                             foreach (var chromosome in mutatedChromosomesSet) {
-                                this.logger.WriteWithColor($"#{chromosome.Id}", ConsoleColor.Cyan);
+                                this.logger.WriteWithColor(String.Format("#{0}", chromosome.Id), ConsoleColor.Cyan);
                                 this.logger.WriteWithColor(", ", ConsoleColor.Gray);
                             }
                             logger.WriteWithColor(" мутировали!\n", ConsoleColor.Red);
@@ -153,11 +153,11 @@ namespace Lomtseu {
                         if (childChromosomesList.Count > 0) {
                             logger.WriteWithColor(" Скрещивание: ", ConsoleColor.Red);
                             foreach (var chromosome in childChromosomesList) {
-                                logger.WriteWithColor($"#{chromosome.Parents[0].Id}", ConsoleColor.Cyan);
+                                logger.WriteWithColor(String.Format("#{0}", chromosome.Parents[0].Id), ConsoleColor.Cyan);
                                 logger.WriteWithColor("+", ConsoleColor.Gray);
-                                logger.WriteWithColor($"#{chromosome.Parents[1].Id}", ConsoleColor.Cyan);
+                                logger.WriteWithColor(String.Format("#{0}", chromosome.Parents[1].Id), ConsoleColor.Cyan);
                                 logger.WriteWithColor("=>", ConsoleColor.Gray);
-                                logger.WriteWithColor($"{chromosome}", ConsoleColor.White);
+                                logger.WriteWithColor(String.Format("{0}", chromosome), ConsoleColor.White);
                                 logger.WriteWithColor(", ", ConsoleColor.Gray);
                             }
                             logger.WriteWithColor("\n", ConsoleColor.Gray);

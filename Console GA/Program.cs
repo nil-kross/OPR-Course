@@ -15,7 +15,7 @@ namespace Lomtseu {
             var @params = new List<Parameter>{
                 x, y
             };
-            Func<Chromosome, Fitness> fitness = (ind) => new Fitness(ind, (-1 * ind[x] * ind[x] -1 * ind[y] * ind[y] + 4));
+            Func<Chromosome, Fitness> fitness = (ind) => new Fitness(ind, (-1 * ind[x] * ind[x] + -1 * ind[y] * ind[y]));
             Func<IEnumerable<Fitness>, Double, IEnumerable<Fitness>> selection = (IEnumerable<Fitness> fitnesses, Double part) => {
                 var chromosomesList = new List<Fitness>();
 
@@ -62,12 +62,12 @@ namespace Lomtseu {
                 Console.WriteLine(" Параметры:");
                 foreach (var par in @params)
                 {
-                    logger.WriteWithColor($"\t{par},\n", ConsoleColor.Gray);
+                    logger.WriteWithColor(String.Format("\t{0},\n", par), ConsoleColor.Gray);
                 }
                 logger.WriteWithColor(" Алгоритм начинает выполнение..\n", ConsoleColor.Gray);
                 var res = ga.Compute();
                 logger.WriteWithColor("\n Оптимальное решение:\n", ConsoleColor.Green);
-                Console.WriteLine($"Приспособленность={res.Value} | {res.Chromosome}");
+                Console.WriteLine(String.Format("Приспособленность={0} | {1}", res.Value, res.Chromosome));
 
                 Console.ReadKey();
             }

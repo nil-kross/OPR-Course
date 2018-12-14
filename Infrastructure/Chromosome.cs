@@ -131,12 +131,28 @@ namespace Lomtseu {
                     }
                 }
             }
-            foreach (var gene in this.genesList) {
-                var value = gene[this.allelesArray];
-                argumentsString += $"{gene.Parameter.Name}={value};";
+            {
+                var isFirst = true;
+
+                foreach (var gene in this.genesList) {
+                    var value = gene[this.allelesArray];
+
+                    argumentsString += String.Format(
+                        "{2}{0}={1}",
+                        gene.Parameter.Name,
+                        value,
+                        isFirst ? "" : "; " 
+                    );
+                    isFirst = false;
+                }
             }
 
-            return $"#{this.Id} [{allelesString}]=({argumentsString})";
+            return String.Format(
+                "#{0} [{1}]=({2})",
+                this.Id,
+                allelesString,
+                argumentsString
+            );
         }
 
         public static IEnumerable<Chromosome> Cross(Chromosome first, Chromosome second) {

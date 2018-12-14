@@ -10,7 +10,7 @@ namespace Lomtseu {
 
         public void Log(String text, Nullable<ConsoleColor> color = null) {
             this.WriteWithColor("> ", ConsoleColor.Green);
-            this.WriteWithColor($"[{DateTime.Now.ToString("hh:mm:ss")}] ", ConsoleColor.Yellow);
+            this.WriteWithColor(String.Format("[{0}] ", DateTime.Now.ToString("hh:mm:ss")), ConsoleColor.Yellow);
             this.WriteWithColor(text, color ?? Logger.defaultColor);
             Console.WriteLine();
         }

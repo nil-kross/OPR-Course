@@ -27,7 +27,11 @@ namespace Lomtseu {
         }
 
         public override String ToString() {
-            return $"#{this.chromosome.Id}={this.value}";
+            return String.Format(
+                "#{0}={1}",
+                this.chromosome.Id,
+                this.value
+            );
         }
 
         public Int32 CompareTo(Object obj) {

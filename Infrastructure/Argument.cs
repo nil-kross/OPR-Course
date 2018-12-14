@@ -30,7 +30,11 @@ namespace Lomtseu {
         }
 
         public override String ToString() {
-            return $"{this.Parameter.Name}={this.Value,3}";
+            return String.Format(
+                "{0}={1,3}",
+                this.Parameter.Name,
+                this.Value
+            );
         }
     }
 }

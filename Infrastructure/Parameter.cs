@@ -57,7 +57,7 @@ namespace Lomtseu
 
         public override string ToString()
         {
-            return $"{this.Min,3} < {this.Name} < {this.Max,3}";
+            return String.Format("{0,3} < {1} < {2,3}", this.Min,  this.Name, this.Max);
         }
     }
 }
