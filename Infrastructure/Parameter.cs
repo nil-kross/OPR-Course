@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Lomtseu
-{
+namespace Lomtseu {
     public class Parameter
     {
         private String nameString = null;
@@ -55,7 +50,7 @@ namespace Lomtseu
             return new Argument(this, value);
         }
 
-        public override string ToString()
+        public override String ToString()
         {
             return String.Format("{0,3} < {1} < {2,3}", this.Min,  this.Name, this.Max);
         }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lomtseu {
     public class GeneticAlgorithm {
@@ -68,9 +66,9 @@ namespace Lomtseu {
                     {
                         var fitness = this.fitnessDelegate(chromosome);
 
-                        logger.WriteWithColor($"#{fitness.Chromosome.Id}", ConsoleColor.Cyan);
-                        logger.WriteWithColor("=", ConsoleColor.Gray);
-                        logger.WriteWithColor($"{fitness.Value}, ", ConsoleColor.Yellow);
+                        this.logger.WriteWithColor($"#{fitness.Chromosome.Id}", ConsoleColor.Cyan);
+                        this.logger.WriteWithColor("=", ConsoleColor.Gray);
+                        this.logger.WriteWithColor($"{fitness.Value}, ", ConsoleColor.Yellow);
                         fitnessesList.Add(fitness);
                     }
                     this.logger.WriteWithColor("\n", ConsoleColor.White);
@@ -120,12 +118,12 @@ namespace Lomtseu {
                             }
                         }
                         if (mutatedChromosomesSet.Count > 0) {
-                            logger.WriteWithColor(" Хромосомы ", ConsoleColor.Red);
+                            this.logger.WriteWithColor(" Хромосомы ", ConsoleColor.Red);
                             foreach (var chromosome in mutatedChromosomesSet) {
                                 this.logger.WriteWithColor(String.Format("#{0}", chromosome.Id), ConsoleColor.Cyan);
                                 this.logger.WriteWithColor(", ", ConsoleColor.Gray);
                             }
-                            logger.WriteWithColor(" мутировали!\n", ConsoleColor.Red);
+                            this.logger.WriteWithColor(" мутировали!\n", ConsoleColor.Red);
                         }
                     }
                     // Размножение:
@@ -151,16 +149,16 @@ namespace Lomtseu {
                             }
                         }
                         if (childChromosomesList.Count > 0) {
-                            logger.WriteWithColor(" Скрещивание: ", ConsoleColor.Red);
+                            this.logger.WriteWithColor(" Скрещивание: ", ConsoleColor.Red);
                             foreach (var chromosome in childChromosomesList) {
-                                logger.WriteWithColor(String.Format("#{0}", chromosome.Parents[0].Id), ConsoleColor.Cyan);
-                                logger.WriteWithColor("+", ConsoleColor.Gray);
-                                logger.WriteWithColor(String.Format("#{0}", chromosome.Parents[1].Id), ConsoleColor.Cyan);
-                                logger.WriteWithColor("=>", ConsoleColor.Gray);
-                                logger.WriteWithColor(String.Format("{0}", chromosome), ConsoleColor.White);
-                                logger.WriteWithColor(", ", ConsoleColor.Gray);
+                                this.logger.WriteWithColor(String.Format("#{0}", chromosome.Parents[0].Id), ConsoleColor.Cyan);
+                                this.logger.WriteWithColor("+", ConsoleColor.Gray);
+                                this.logger.WriteWithColor(String.Format("#{0}", chromosome.Parents[1].Id), ConsoleColor.Cyan);
+                                this.logger.WriteWithColor("=>", ConsoleColor.Gray);
+                                this.logger.WriteWithColor(String.Format("{0}", chromosome), ConsoleColor.White);
+                                this.logger.WriteWithColor(", ", ConsoleColor.Gray);
                             }
-                            logger.WriteWithColor("\n", ConsoleColor.Gray);
+                            this.logger.WriteWithColor("\n", ConsoleColor.Gray);
                         }
                     }
                     // Формирование новой популяции:

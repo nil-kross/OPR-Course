@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lomtseu {
-    public delegate decimal FitnessDelegate(Chromosome individual);
+    public delegate Decimal FitnessDelegate(Chromosome individual);
 }

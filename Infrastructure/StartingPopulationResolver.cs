@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Lomtseu.Parameter;
 
 namespace Lomtseu {
     public abstract class StartingPopulationResolver {
@@ -36,13 +32,13 @@ namespace Lomtseu {
                 Population startingPopulation = null;
                 IList<Chromosome> chromosomesList = new List<Chromosome>();
 
-                for (var i = 0; i < populationSizeValue; i++) {
+                for (var i = 0; i < this.populationSizeValue; i++) {
                     Chromosome chromosome = null;
 
                     {
                         IList<Argument> arguments = new List<Argument>();
 
-                        foreach (var parameter in parametersEnumerable) {
+                        foreach (var parameter in this.parametersEnumerable) {
                             arguments.Add(new Argument(parameter, parameter.GetRandomArgument().Value));
                         }
 

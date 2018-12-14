@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Lomtseu.Parameter;
 
 namespace Lomtseu {
     public class Chromosome {
@@ -51,7 +48,7 @@ namespace Lomtseu {
             foreach (var arg in arguments) {
                 var gene = new Gene(arg.Parameter);
 
-                genesList.Add(gene);
+                this.genesList.Add(gene);
             }
             {
                 Int32 totalLengthValue = 0;
@@ -64,7 +61,7 @@ namespace Lomtseu {
                 }
                 this.allelesArray = new Boolean[totalLengthValue];
             }
-            for (var i = 0; i < arguments.Count(); i++) { 
+            for (var i = 0; i < arguments.Count(); i++) {
                 var gene = this.genesList[i];
                 var arg = arguments[i];
 
@@ -141,7 +138,7 @@ namespace Lomtseu {
                         "{2}{0}={1}",
                         gene.Parameter.Name,
                         value,
-                        isFirst ? "" : "; " 
+                        isFirst ? "" : "; "
                     );
                     isFirst = false;
                 }
