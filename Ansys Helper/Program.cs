@@ -189,8 +189,8 @@ def OnRelease(entity):
                 if (fileNameString != null) {
                     var destinationFolderString = ansysVersionString + @"\Addins\ACT\bin\Win64\";
 
-                    if (File.Exists(destinationFolderString + "Ansys.dll")) {
-                        File.Delete(destinationFolderString + "Ansys.dll");
+                    if (File.Exists(destinationFolderString + fileNameString)) {
+                        File.Delete(destinationFolderString + fileNameString);
                     }
                     File.Copy(dllPathwayString, destinationFolderString + fileNameString);
                 }

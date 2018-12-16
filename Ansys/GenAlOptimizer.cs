@@ -1,6 +1,7 @@
 ﻿using Ans.ComponentSystem;
 using Ans.DesignXplorer.InterProcessConnectionServer;
 using Ans.DesignXplorer.InterProcessConnectionServices;
+using Ansys.ACT.Core;
 using Ansys.ACT.Interfaces.Common;
 using Ansys.DesignXplorer.API.Common;
 using Ansys.DesignXplorer.API.Optimization;
@@ -19,7 +20,7 @@ namespace Ansys {
         private readonly IListCpp samples = new VariantColl();
         private readonly IListCpp candidates = new VariantColl();
         private IOptimizationServices services;
-        private readonly IExtAPI api;
+        private readonly ExtensionAPI api;
 
         public IOptimizationServices Services {
             get { return this.services; }
@@ -38,7 +39,7 @@ namespace Ansys {
             get { return enumPostProcessingType.ePPT_Candidates | enumPostProcessingType.ePPT_Samples; }
         }
 
-        public GenAlOptimizer(IExtAPI extensionApi) {
+        public GenAlOptimizer(ExtensionAPI extensionApi) {
             this.api = extensionApi;
         }
 
@@ -282,7 +283,6 @@ namespace Ansys {
         }
 
         public void Run() {
-            this.api.Log.WriteMessage("RUN");
             using (IServer server = new Server<DXServices>()) {
                 DXServices services = server.GetServices() as DXServices;
 
