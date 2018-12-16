@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace Ansys_Helper {
     public class Program {
+        private static String ansysFolderString = @"C:\Program Files\ANSYS\";
+
         static void Main(string[] args) {
             var xmlTemplateString =
 @"
@@ -51,9 +53,9 @@ from Ansys.UI.Toolkit import *
 from Ansys import *
 
 def OnCreate(entity):
-    generations = entity.Properties['GenerationsAmount'].Value
+    ga = GenAlOptimizer(ExtAPI)
 
-    return GenAlOptimizer(generations)
+    return ga
 def CanRun(entity):
     generations = entity.Properties['GenerationsAmount'].Value
 
@@ -91,7 +93,6 @@ def OnRelease(entity):
     ExtAPI.Log.WriteMessage('Shutting down..')
 ";
             
-            var ansysFolderString = @"C:\Program Files\ANSYS\";
             var myExtensionsString = @"My Extensions\";
             var name = "GenAl";
             var version = (new Random()).Next(0, Int32.MaxValue - 1);
@@ -125,30 +126,17 @@ def OnRelease(entity):
             Program.CreateFile(ansysFolderString + myExtensionsString + name, '\\' + "main" + ".py", pyTemplateString);
 
             {
-                var dllPathwayString = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Ansys\bin\Debug\Ansys.dll");
+                var dllsStringsList = new List<String> {
+                    @"..\..\..\Ansys\bin\Debug\Ansys.dll",
+                    @"..\..\..\DLLs\Ans.DesignXplorer.MatlabOptimizer.dll",
+                    @"..\..\..\DLLs\Ans.DesignXplorer.MatlabApplication.dll",
+                    @"..\..\..\DLLs\Ans.DesignXplorer.InterProcessConnectionClient.dll",
+                    @"..\..\..\DLLs\Ans.DesignXplorer.InterProcessConnectionServer.dll",
+                    @"..\..\..\DLLs\Ans.DesignXplorer.InterProcessConnectionServices.dll"
+                };
 
-                if (File.Exists(dllPathwayString)) {
-                    var ansysVersionString = "v170";
-                    var directoriesArray = Directory.GetDirectories(ansysFolderString + @"ANSYS Inc\");
-                    var regex = new Regex("[v].*");
-
-                    foreach (var directory in directoriesArray) {
-                        var folder = directory.Split('\\').Reverse().First();
-                        var match = regex.Match(folder);
-
-                        if (match != null) {
-                            ansysVersionString = directory;
-                        }
-                    }
-
-                    {
-                        var destinationFolderString = ansysVersionString + @"\Addins\ACT\bin\Win64\";
-
-                        if (File.Exists(destinationFolderString + "Ansys.dll")) {
-                            File.Delete(destinationFolderString + "Ansys.dll");
-                        }
-                        File.Move(dllPathwayString, destinationFolderString + "Ansys.dll");
-                    }
+                foreach (var dll in dllsStringsList) {
+                    Program.PutFileToBinFolder(dll);
                 }
             }
         }
@@ -177,6 +165,35 @@ def OnRelease(entity):
 
                 streamWriter.Write(content);
                 streamWriter.Flush();
+            }
+        }
+
+        public static void PutFileToBinFolder(String relativePathway) {
+            var dllPathwayString = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePathway);
+            var isExist = File.Exists(dllPathwayString);
+
+            if (isExist) {
+                var ansysVersionString = "v170";
+                var directoriesArray = Directory.GetDirectories(Program.ansysFolderString + @"ANSYS Inc\");
+                var regex = new Regex("[v].*");
+                var fileNameString = relativePathway.Split('\\').Reverse().FirstOrDefault();
+
+                foreach (var directory in directoriesArray) {
+                    var folder = directory.Split('\\').Reverse().First();
+                    var match = regex.Match(folder);
+
+                    if (match != null) {
+                        ansysVersionString = directory;
+                    }
+                }
+                if (fileNameString != null) {
+                    var destinationFolderString = ansysVersionString + @"\Addins\ACT\bin\Win64\";
+
+                    if (File.Exists(destinationFolderString + "Ansys.dll")) {
+                        File.Delete(destinationFolderString + "Ansys.dll");
+                    }
+                    File.Copy(dllPathwayString, destinationFolderString + fileNameString);
+                }
             }
         }
     }

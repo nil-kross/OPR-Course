@@ -49,6 +49,15 @@
     <Reference Include="Ans.DesignXplorer.GUI">
       <HintPath>..\DLLs\Ans.DesignXplorer.GUI.dll</HintPath>
     </Reference>
+    <Reference Include="Ans.DesignXplorer.InterProcessConnectionClient">
+      <HintPath>..\DLLs\Ans.DesignXplorer.InterProcessConnectionClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Ans.DesignXplorer.InterProcessConnectionServer">
+      <HintPath>..\DLLs\Ans.DesignXplorer.InterProcessConnectionServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Ans.DesignXplorer.InterProcessConnectionServices">
+      <HintPath>..\DLLs\Ans.DesignXplorer.InterProcessConnectionServices.dll</HintPath>
+    </Reference>
     <Reference Include="Ans.DesignXplorer.PublicAPIs">
       <HintPath>..\DLLs\Ans.DesignXplorer.PublicAPIs.dll</HintPath>
     </Reference>
@@ -83,8 +92,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenA.cs" />
+    <Compile Include="Constraint.cs" />
     <Compile Include="GenAlOptimizer.cs" />
+    <Compile Include="Objective.cs" />
+    <Compile Include="Parameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

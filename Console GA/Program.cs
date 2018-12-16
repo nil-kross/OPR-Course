@@ -8,7 +8,7 @@ namespace Lomtseu {
     class Program {
         static void Main(string[] args)
         {
-            var range = 100;
+            var range = 16;
             Logger logger = new Logger();
             Parameter x = new Parameter("X", -1 * range , range, 1);
             Parameter y = new Parameter("Y", -1 * range, range, 1);
@@ -47,9 +47,9 @@ namespace Lomtseu {
                 GeneticAlgorithm ga = new GeneticAlgorithm(
                     populationResolver,
                     selection,
-                    99,
+                    999,
                     fitness,
-                    0.10,
+                    0.50,
                     0.50,
                     null,
                     new TimeSpan(0, 0, 10, 0)
