@@ -1,5 +1,5 @@
 ﻿# Common workflow
-## Cope project folder "My Extensions" & move it to the ""..\ANSYS Inc.\My Extensions"
+## Copy project folder "My Extensions" & move it to the ""..\ANSYS Inc.\My Extensions"
 
 ## Build "Ansys" project
 ## Move "Ansys.dll" library to "..\ACT\bin\x64\" folder
